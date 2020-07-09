@@ -1,0 +1,75 @@
+[
+    {
+        "type" : "folder",
+        "name" : "Папка с данными",
+        "files": [
+            {
+                "type" : "folder",
+                "name" : "Папка с данными",
+                "files": [
+                    {
+                        "type" : "file",
+                        "name" : "Документ"
+                    },
+                    {
+                        "type" : "file",
+                        "name" : "Документ"
+                    },
+                    {
+                        "type" : "file",
+                        "name" : "Документ"
+                    },
+                    {
+                        "type" : "file",
+                        "name" : "Документ"
+                    },
+                    {
+                        "type" : "file",
+                        "name" : "Документ"
+                    }
+                ]
+            },
+            {
+                "type" : "folder",
+                "name" : "Папка с данными",
+                "files": [
+                    {
+                        "type" : "file",
+                        "name" : "Документ"
+                    }
+                ]
+            },
+            {
+                "type" : "folder",
+                "name" : "Папка с данными",
+                "files": []
+            },
+            {
+                "type" : "folder",
+                "name" : "Папка с данными",
+                "files": [
+                    {
+                        "type" : "file",
+                        "name" : "Документ"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type" : "file",
+        "name" : "Документ"
+    },
+    {
+        "type" : "file",
+        "name" : "Документ"
+    },
+    {
+        "type" : "file",
+        "name" : "Документ"
+    },
+    {
+        "type" : "file",
+        "name" : "Документ"
+    }
+]
