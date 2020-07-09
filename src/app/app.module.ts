@@ -7,6 +7,8 @@ import { FolderListComponent } from './folder-list/folder-list.component';
 import { FilePreviewComponent } from './file-preview/file-preview.component';
 import { FolderReaderPageComponent } from './folder-reader-page/folder-reader-page.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,8 @@ import { FolderReaderPageComponent } from './folder-reader-page/folder-reader-pa
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
