@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export class FolderListService
 {
@@ -8,9 +9,9 @@ export class FolderListService
         
     }
     
-    getFolderList()
+    getFolderList() : Observable<any[]>
     {
-        return this.http.get('./assets/folder-list.json');
+        return this.http.get<any[]>('./assets/folder-list.json');
     }
 
 }
