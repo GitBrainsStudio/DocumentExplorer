@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "DocumentReader"
+    }
+  },
+  "defaultProject": "DocumentReader",
+  "cli": {
+    "analytics": false
+  }
 }
