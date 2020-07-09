@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-file-preview',
+  selector: 'file-preview',
   templateUrl: './file-preview.component.html',
   styleUrls: ['./file-preview.component.css']
 })
