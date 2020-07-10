@@ -4,13 +4,10 @@ import { FolderReaderPageComponent } from './folder-reader-page/folder-reader-pa
 
 
 const routes: Routes = [
-  {
-    path: 'folder-reader', component: FolderReaderPageComponent,
-  },
 
   {
-    path: '**', redirectTo: 'folder-reader'
-  }
+    path: '**', component: FolderReaderPageComponent,
+  },
 ];
 
 @NgModule({

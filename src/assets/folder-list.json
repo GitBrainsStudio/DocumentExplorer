@@ -1,56 +1,76 @@
 [
     {
         "type" : "folder",
-        "name" : "Папка с данными",
+        "name" : "Folder1",
         "files": [
             {
                 "type" : "folder",
-                "name" : "Папка с данными",
+                "name" : "Folder2",
                 "files": [
                     {
                         "type" : "file",
-                        "name" : "Документ"
+                        "name" : "Document1"
+                    },
+                    {
+                        "type" : "folder",
+                        "name" : "Folder3",
+                        "files": [
+                            {
+                                "type" : "file",
+                                "name" : "Document2"
+                            }
+                        ]
                     },
                     {
                         "type" : "file",
-                        "name" : "Документ"
+                        "name" : "Document3"
                     },
                     {
                         "type" : "file",
-                        "name" : "Документ"
+                        "name" : "Document4"
                     },
                     {
                         "type" : "file",
-                        "name" : "Документ"
+                        "name" : "Document5"
                     },
                     {
                         "type" : "file",
-                        "name" : "Документ"
+                        "name" : "Document6"
                     }
                 ]
             },
             {
                 "type" : "folder",
-                "name" : "Папка с данными",
+                "name" : "Folder4",
                 "files": [
                     {
                         "type" : "file",
-                        "name" : "Документ"
+                        "name" : "Document7"
+                    },
+                    {
+                        "type" : "folder",
+                        "name" : "Folder3",
+                        "files": [
+                            {
+                                "type" : "file",
+                                "name" : "Document2"
+                            }
+                        ]
                     }
                 ]
             },
             {
                 "type" : "folder",
-                "name" : "Папка с данными",
+                "name" : "Folder5",
                 "files": []
             },
             {
                 "type" : "folder",
-                "name" : "Папка с данными",
+                "name" : "Folder6",
                 "files": [
                     {
                         "type" : "file",
-                        "name" : "Документ"
+                        "name" : "Document8"
                     }
                 ]
             }
@@ -58,18 +78,18 @@
     },
     {
         "type" : "file",
-        "name" : "Документ"
+        "name" : "Document9"
     },
     {
         "type" : "file",
-        "name" : "Документ"
+        "name" : "Document10"
     },
     {
         "type" : "file",
-        "name" : "Документ"
+        "name" : "Document11"
     },
     {
         "type" : "file",
-        "name" : "Документ"
+        "name" : "Document12"
     }
 ]

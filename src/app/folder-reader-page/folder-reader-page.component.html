@@ -1,22 +1,52 @@
-<p>folder-reader-page works!</p>
 
+<main>
+    <div class="container">
 
+        <!--FOLDER LIST WITH ROUTE INPUT-->
+        <!-- <folder-list [route]="'/Folder1/Folder4/Document7'"></folder-list> -->
 
-<div class="container">
+        <!--FOLDER LIST WITHOUT ROUTE INPUT-->
+        <folder-list></folder-list>
 
-    <folder-list></folder-list>
-    <file-preview></file-preview>
-
-</div>
+        <file-preview></file-preview>
+    </div>
+    
+</main>
 
 
 
 <style>
 
+    main
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
     .container
     {
         display: flex;
-        justify-content: space-between;
+        width: 800px;
+        height: 800px;
     }
+
+    folder-list
+    {
+        width: 400px;
+    }
+
+    file-preview
+    {
+        width: 400px;
+        background-color: rgb(244, 255, 227);
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 300px;
+    }
+    
 
 </style>

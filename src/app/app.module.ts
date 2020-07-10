@@ -8,18 +8,24 @@ import { FilePreviewComponent } from './file-preview/file-preview.component';
 import { FolderReaderPageComponent } from './folder-reader-page/folder-reader-page.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { FolderComponent } from './folder-list/folder/folder.component';
+import { FileComponent } from './folder-list/file/file.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     FolderListComponent,
     FilePreviewComponent,
-    FolderReaderPageComponent
+    FolderReaderPageComponent,
+    FolderComponent,
+    FileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

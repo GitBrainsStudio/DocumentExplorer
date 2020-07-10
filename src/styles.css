@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+a
+{
+    color: #333;
+    transition: 1s;
+}
+
+a:hover{
+    text-decoration: underline;
+    color: rgb(194, 80, 3);
+    cursor: pointer;
+}
+
+.empty-folder
+{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.active
+{
+    color: rgb(194, 80, 3);
+}
+
+
+.hide
+{
+    opacity: 0;
+    transition: .5s;
+}
+
+.show
+{
+    opacity: 1;
+    transition: .5s;
+}

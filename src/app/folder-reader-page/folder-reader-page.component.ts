@@ -5,11 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './folder-reader-page.component.html',
   styleUrls: ['./folder-reader-page.component.css']
 })
-export class FolderReaderPageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class FolderReaderPageComponent { } 
