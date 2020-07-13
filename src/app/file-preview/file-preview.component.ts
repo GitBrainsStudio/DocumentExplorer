@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { File } from '../DTO/file';
-import { FilePreviewService } from './file-preview.service';
-import { Folder } from '../DTO/folder';
+import { Folder } from '../Models/Folder';
 
 @Component({
   selector: 'file-preview',
@@ -9,24 +7,12 @@ import { Folder } from '../DTO/folder';
 })
 export class FilePreviewComponent implements OnInit {
 
-  constructor(private filePreviewService : FilePreviewService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.filePreviewService.fileUpdated.subscribe(
-      (file) => {
-        this.file = file;
-      }
-    );
-
-    this.filePreviewService.folderUpdated.subscribe(
-      (folder) => {
-        this.folder = folder;
-      }
-    );
+  
   }
 
-  @Input() file:File;
-  @Input() folder:Folder;
-
+  @Input() file:File | Folder;
 
 }

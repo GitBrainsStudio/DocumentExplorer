@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+/* import { Injectable, EventEmitter } from '@angular/core';
 import { FileWithViewData } from '../DTO/fileWithViewData';
 import { FolderWithViewData } from '../DTO/FolderWithViewData';
 
@@ -21,4 +21,4 @@ export class FilePreviewService
         this.folderUpdated.emit(this.openedFolder);
     }
 
-}
+} */

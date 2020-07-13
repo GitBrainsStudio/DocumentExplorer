@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { FolderWithViewData } from 'src/app/DTO/FolderWithViewData';
-import { FilePreviewService } from 'src/app/file-preview/file-preview.service';
 import { Router } from '@angular/router';
+import { Folder } from 'src/app/Models/Folder';
 
 @Component({
   selector: 'folder',
@@ -11,19 +10,19 @@ import { Router } from '@angular/router';
 export class FolderComponent  {
 
 
-    constructor(private filePreviewService:FilePreviewService, private router:Router)
+    constructor(private router:Router)
     {
 
     }
 
 
-    @Input() folder:FolderWithViewData;
+    @Input() folder:Folder;
 
     openFolder()
     {
-        this.filePreviewService.setFolder(this.folder);
+      /*   this.filePreviewService.setFolder(this.folder);
         if (this.folder.files) this.folder.opened = !this.folder.opened;
-        if (this.folder.files.length != 0) this.router.navigate([this.folder.router])
+        if (this.folder.files.length != 0) this.router.navigate([this.folder.router]) */
     }
 
 }

@@ -1,7 +1,5 @@
 import {Component, Input} from '@angular/core';
-import { FileWithViewData } from 'src/app/DTO/fileWithViewData';
-import { FilePreviewService } from 'src/app/file-preview/file-preview.service';
-import { Router } from '@angular/router';
+import { File } from '../../Models/File';
 
 @Component({
   selector: 'file',
@@ -9,17 +7,17 @@ import { Router } from '@angular/router';
 })
 export class FileComponent {
   
-    constructor(private filePreviewService:FilePreviewService, private router : Router)
+    constructor()
     {
-
+      console.log(this.file)
     }
 
-    @Input() file:FileWithViewData;
+    @Input() file:File;
 
     openFile()
     {
-      this.filePreviewService.setFile(this.file);
-      this.router.navigate([this.file.router]);
+     /*  this.filePreviewService.setFile(this.file);
+      this.router.navigate([this.file.router]); */
     }
 
 }
