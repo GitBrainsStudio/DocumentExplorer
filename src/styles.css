@@ -11,26 +11,8 @@ a:hover{
     cursor: pointer;
 }
 
-.empty-folder
-{
-    opacity: 0.5;
-    pointer-events: none;
-}
 
 .active
 {
     color: rgb(194, 80, 3);
-}
-
-
-.hide
-{
-    opacity: 0;
-    transition: .5s;
-}
-
-.show
-{
-    opacity: 1;
-    transition: .5s;
 }

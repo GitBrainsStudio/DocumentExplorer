@@ -1,0 +1,7 @@
+<div *ngIf="file" class="file-body">
+    <div class="row">
+        <img src="./assets/icons/file-video.png">
+        <a [routerLink]="file.routerLink" (click)="directoryReaderService.openFileChange(file)"><h4>{{ file.name }}</h4></a>
+    </div>
+</div>
+

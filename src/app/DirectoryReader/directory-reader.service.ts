@@ -6,16 +6,17 @@ import { map } from 'rxjs/operators';
 import { TreeItem } from '../Models/treeItem';
 import { Folder } from '../Models/Folder';
 import { File } from '../Models/File';
+import { apiFileSystem } from 'src/environments/environment';
 
 @Injectable({providedIn:"root"})
-export class FolderListService
+export class DirectoryReaderService
 {
-
+  
     constructor(private http : HttpClient) { }
     
     getRootDirectoryFiles() : Observable<Folder[] | File[]>
     {
-        return this.http.get('./assets/folder-list.json').pipe(map((items:TreeItem[]) =>  { return this.mapFiles(items, "root"); }));
+        return this.http.get(apiFileSystem).pipe(map((items:TreeItem[]) =>  { return this.mapFiles(items, "root"); }));
     }
 
     private mapFiles(data:TreeItem[], parent:string)
@@ -33,5 +34,15 @@ export class FolderListService
 
             });
     }
+
+
+    openFile : TreeItem;
+    openFileChange(item:TreeItem)
+    {
+       
+        this.openFile = item;
+        console.log(this.openFile)
+    }
+
 
 }

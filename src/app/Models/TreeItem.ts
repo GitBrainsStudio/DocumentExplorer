@@ -10,4 +10,5 @@ export abstract class TreeItem {
     abstract routerLink : string;
     abstract files? : TreeItem[];
     abstract parent:string;
+    abstract opened?:boolean;
 }

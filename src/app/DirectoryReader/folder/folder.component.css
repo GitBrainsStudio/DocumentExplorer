@@ -1,0 +1,28 @@
+.empty-folder
+{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.folder-body
+{
+    margin: 10px 10px 10px 50px;
+}
+
+.row
+{
+    display: flex; 
+    justify-content:flex-start; 
+    align-items: center;
+}
+
+.row h3
+{
+    margin: 0 0 0 10px;
+}
+
+.row img 
+{
+    width: 48px;
+    height: 48px;
+}

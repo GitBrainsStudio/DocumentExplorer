@@ -2,6 +2,7 @@ import { TreeItem } from './treeItem';
 
 export class File extends TreeItem
 {
+
     constructor(public name, public parent:string)
     {
         super(name, 'file');
@@ -10,4 +11,5 @@ export class File extends TreeItem
     type: string;
     routerLink:string;
     files?: TreeItem[];
+    opened?: boolean;
 }

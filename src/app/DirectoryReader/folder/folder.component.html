@@ -1,0 +1,13 @@
+<div *ngIf="folder" class="folder-body" [ngClass]="{'empty-folder' : !folder.files.length }">
+    <div class="row">
+        <img src="./assets/icons/folder-mac.png">
+        <a (click)="openFolder()"><h3>{{ folder.name }}</h3></a>
+    </div>
+    <div *ngIf="folder.opened">
+        <div *ngFor="let item of folder.files" >
+            <folder *ngIf="isFolder(item)" [folder]="item" ></folder>
+            <file *ngIf="isFile(item)" [file]="item" ></file>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,9 @@
+<p *ngIf="!file">Выберите папку или файля для просмотра</p>
+
+<p *ngIf="file && isFolder" >
+    Название папки: {{ file.name }}
+</p>
+
+<p *ngIf="file && isFile">
+    Название файла: {{ file.name }}
+</p>

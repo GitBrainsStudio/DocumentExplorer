@@ -1,0 +1,30 @@
+<main>
+    <div class="container">
+        <input [(ngModel)]="searchStr" (ngModelChange)="searchStrChanged()" >
+
+        <div class="col">
+            <div *ngIf="files" class="body">
+        
+                <div *ngFor="let item of files">
+            
+                    <folder *ngIf="isFolder(item)" [folder]="item"></folder>
+            
+                    <file *ngIf="isFile(item)" [file]="item"></file>
+            
+                </div>
+            </div>
+            
+            <div *ngIf='files && files.length == 0 && searchStr != ""' class="info">Данных не найдено</div>
+            
+            <!--FOLDER LIST WITH ROUTE INPUT-->
+            <!-- <file-previewer [route]="'/Folder1/Folder4/Document7'"></file-previewer> -->
+    
+            <!--FOLDER LIST WITHOUT ROUTE INPUT-->
+            <!--   <file-previewer></file-previewer> -->
+            <file-previewer [file]="openFile"></file-previewer>
+    
+    
+        </div>
+    </div>
+    
+</main>

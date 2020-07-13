@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FolderReaderPageComponent } from './folder-reader-page/folder-reader-page.component';
-
+import { DirectoryReaderComponent } from './DirectoryReader/directory-reader.component';
 
 const routes: Routes = [
 
   {
-    path: '**', component: FolderReaderPageComponent,
+    path: '**', component: DirectoryReaderComponent,
   },
 ];
 
