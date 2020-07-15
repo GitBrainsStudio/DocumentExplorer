@@ -1,6 +1,6 @@
 <main>
     <div class="container">
-        <input [(ngModel)]="searchStr" (ngModelChange)="searchStrChanged()" >
+        <input [(ngModel)]="searchStr" (ngModelChange)="searchStrChangeEvent()" >
 
         <div class="col">
             <div *ngIf="files" class="body">

@@ -37,12 +37,7 @@ export class DirectoryReaderService
 
 
     openFile : TreeItem;
-    openFileChange(item:TreeItem)
-    {
-       
-        this.openFile = item;
-        console.log(this.openFile)
-    }
+    openFileChange(item:TreeItem) { this.openFile = item;}
 
 
 }

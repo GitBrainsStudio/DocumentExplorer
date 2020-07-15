@@ -7,6 +7,7 @@ import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { FileDetector } from '../Models/FileDetector';
 import { DirectoryReaderService } from './directory-reader.service';
+import { FilesFilter } from '../Models/FilesFilter';
 
 @Component({
   selector: 'directory-reader',
@@ -15,61 +16,71 @@ import { DirectoryReaderService } from './directory-reader.service';
 })
 export class DirectoryReaderComponent implements OnInit {
 
-    constructor 
-    (public directoryReaderService : DirectoryReaderService, private activatedRoute:ActivatedRoute, private router:Router) 
-    
-    { 
-      this.apiDetectRoute(); this.activatedRoute.queryParams.pipe(takeUntil(this.destroy)).subscribe(params => {
-      let search = params['search']; 
-      if (search) 
-        this.searchStr = search;
-    }); 
-    }
+    constructor (public directoryReaderService : DirectoryReaderService, private activatedRoute:ActivatedRoute, private router:Router) 
+                  {  
+                      this.detectRoutePath();  
+                      this.detectQueryParamsInRoute(); 
+                  }
 
-  ngOnInit() { this.downloadRooDirectory(); }
+  async ngOnInit() { 
 
-  apiDetectRoute()
+    if (this.searchStr != "") this.searchStrChangeEvent();
+
+    else  this.parseRouteAndOpenFolder();
+  }
+
+  detectRoutePath()
   {
-    if (!this.route) this.activatedRoute.url.pipe(takeUntil(this.destroy)).subscribe(activeUrl => {
+    if (!this.route) 
+      this.activatedRoute.url.pipe(takeUntil(this.destroy)).subscribe(activeUrl => {
       this.route = window.location.pathname;
      });
   }
 
-  downloadRooDirectory()
+  detectQueryParamsInRoute()
   {
-  this.directoryReaderService.getRootDirectoryFiles().pipe(takeUntil(this.destroy)).subscribe(data => {
+    this.activatedRoute.queryParams.pipe(takeUntil(this.destroy)).subscribe(params => {
+      let search = params['search']; 
+      if (search) 
+        this.searchStr = search;
+  })}
 
-    data.forEach(e => 
+
+  async downloadRootDirectoryFromBase()
+  {
+    await this.directoryReaderService.getRootDirectoryFiles().pipe(takeUntil(this.destroy)).toPromise().then(data =>
       {
-        this.setRoute('/', e);
-      })
 
-    this.files = data;
-    this.filesWithoutFilter = data;
-    this.allFiles = [];
-    this.parseDirectoryInFileList(data);
-    this.parseRoute();
-    this.searchStrChanged();
-  })
+        data.forEach(e => 
+          {
+            this.setUniqRouteInEachItem('/', e);
+          })
+
+        this.files = data;
+      }
+    )
   }
 
-  setRoute(baseRoute, v:TreeItem) : any
+  setUniqRouteInEachItem(baseRoute, v:TreeItem) : any
   {
     v.routerLink = baseRoute + v.name + '/';
     if (v instanceof Folder)
     {
       v.files.forEach(element => {
         {
-          this.setRoute(v.routerLink, element);
+          this.setUniqRouteInEachItem(v.routerLink, element);
         }
       });
     }
     return v;
   }
 
-  parseRoute()
+  async parseRouteAndOpenFolder()
   {
+    await this.downloadRootDirectoryFromBase();
+
     this.routeArray = this.route.split('/');
+    
     this.openFolder(this.files, 1);
   }
 
@@ -87,126 +98,51 @@ export class DirectoryReaderComponent implements OnInit {
             this.openFolder(element.files, i++);
           }
           
-           else this.directoryReaderService.openFileChange(element);
+           else 
+            this.directoryReaderService.openFileChange(element);
         }
     }
   });
   }
 
+  async searchStrChangeEvent()
+  {
+    await this.downloadRootDirectoryFromBase();
+
+    if (this.searchStr == "") this.router.navigate([this.route]); 
+
+    else
+    { 
+      this.files = FilesFilter.filterFilesAndFolders(this.files, this.searchStr);
+      this.router.navigate(['/'], { queryParams: { search: this.searchStr } });
+    }
+  }
+
+
+  isFolder(item:TreeItem) : boolean { return FileDetector.isFolder(item); }
+
+  isFile(item:TreeItem) : boolean { return FileDetector.isFile(item); }
+
+     
+  ngOnDestroy() {
+    this.destroy.next(null);
+    this.destroy.complete();
+  }
 
   get openFile() :TreeItem
   {
     return this.directoryReaderService.openFile;
   }
 
-  searchStrChanged()
-  {
-    if (this.searchStr == "") { this.restoreFiles(); this.router.navigate([this.route]); }
-
-    else
-    {
-      this.restoreFiles();
-      this.router.navigate(['/'], { queryParams: { search: this.searchStr } });
-      this.filterFiles();
-      this.restoreFiles();
-    }
-  }
-
-
-  filterFiles()
-  {
-    this.files = this.files.filter(v => { 
-      
-      if (v.name.includes(this.searchStr)) 
-      {
-        if (v instanceof File) return v;
-        if (v instanceof Folder) 
-        {
-          v.files = this.filterFolderFiles(v.files);
-          v.opened = true;
-          return v;
-        }
-      }
-
-      else
-      {
-        if (v instanceof Folder)
-        {
-          v.files = this.filterFolderFiles(v.files);
-          if (v.files.length > 0) 
-          {
-            v.opened = true;
-            return v;
-          }
-        }
-      }
-    });
-  }
-
-  filterFolderFiles(files:TreeItem[]) : TreeItem[]
-  {
-    return files.filter(v => 
-      {
-        if (v.name.includes(this.searchStr)) 
-        {
-
-          if (v instanceof File) 
-          {
-            return v;
-          }
-
-          if (v instanceof Folder)
-          {
-            v.files = this.filterFolderFiles(v.files);
-            v.opened = true;
-            return v;
-          }
-        }
-
-        else
-        {
-          if (v instanceof Folder)
-          {
-            v.files = this.filterFolderFiles(v.files);
-            if (v.files.length > 0) 
-            {
-              v.opened = true;
-              return v;
-            }
-          }
-        }
-      })
-  }
-
-
-  parseDirectoryInFileList(array:TreeItem[])
-  {
-    array.forEach(element => {  
-      this.allFiles.push(element);
-      {
-        if (element instanceof Folder)
-        {
-          this.parseDirectoryInFileList(element.files);
-        }
-      }
-    });
-  }
-
-  restoreFiles() { this.files = this.filesWithoutFilter; }
-  isFolder(item:TreeItem) : boolean { return FileDetector.isFolder(item); }
-  isFile(item:TreeItem) : boolean { return FileDetector.isFile(item); }
-
   destroy: ReplaySubject<any> = new ReplaySubject<any>(1);
+
   @Input() route:string;
-  filesWithoutFilter:TreeItem[];
-  allFiles:TreeItem[];
+
   routeArray:any;
+
   searchStr:string = "";
+
   files : TreeItem[];
-   
-  ngOnDestroy() {
-    this.destroy.next(null);
-    this.destroy.complete();
-  }
+
 }
 
