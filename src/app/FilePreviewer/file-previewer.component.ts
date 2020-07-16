@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TreeItem } from '../Models/treeItem';
 import { FileDetector } from '../Models/FileDetector';
+import { TreeItem } from '../Models/TreeItem';
 
 @Component({
   selector: 'file-previewer',

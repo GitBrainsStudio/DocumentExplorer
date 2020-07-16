@@ -1,6 +1,7 @@
-import { TreeItem } from './treeItem';
+
 import { Folder } from './Folder';
 import { File } from './File';
+import { TreeItem } from './TreeItem';
 
 export class FileDetector
 {

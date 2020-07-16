@@ -3,10 +3,10 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 import { map } from 'rxjs/operators';
-import { TreeItem } from '../Models/treeItem';
 import { Folder } from '../Models/Folder';
 import { File } from '../Models/File';
 import { apiFileSystem } from 'src/environments/environment';
+import { TreeItem } from '../Models/TreeItem';
 
 @Injectable({providedIn:"root"})
 export class DirectoryReaderService

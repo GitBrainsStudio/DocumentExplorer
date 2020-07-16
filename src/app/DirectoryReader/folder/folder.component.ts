@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Folder } from 'src/app/Models/Folder';
-import { TreeItem } from 'src/app/Models/treeItem';
 import { FileDetector } from 'src/app/Models/FileDetector';
 import { DirectoryReaderService } from '../directory-reader.service';
+import { TreeItem } from 'src/app/Models/TreeItem';
 
 @Component({
   selector: 'folder',

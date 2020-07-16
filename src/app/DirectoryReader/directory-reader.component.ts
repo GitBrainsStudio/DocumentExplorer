@@ -1,13 +1,12 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TreeItem } from '../Models/treeItem';
 import { Folder } from '../Models/Folder';
-import { File } from '../Models/File';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { FileDetector } from '../Models/FileDetector';
 import { DirectoryReaderService } from './directory-reader.service';
 import { FilesFilter } from '../Models/FilesFilter';
+import { TreeItem } from '../Models/TreeItem';
 
 @Component({
   selector: 'directory-reader',

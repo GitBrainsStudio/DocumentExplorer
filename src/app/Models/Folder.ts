@@ -1,4 +1,5 @@
-import { TreeItem } from './treeItem';
+import { TreeItem } from './TreeItem';
+
 
 export class Folder extends TreeItem
 {
