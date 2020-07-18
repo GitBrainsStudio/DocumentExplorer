@@ -1,12 +1,12 @@
-
+import { File } from './File';
 import { Folder } from './Folder';
-import { TreeItem } from './TreeItem';
 
 export class FilesFilter
 {
-    static filterFilesAndFolders(files:TreeItem[], searchStr: string) : TreeItem[]
+    static filterFilesAndFolders(files:File[] | Folder[], searchStr: string) : File[] | Folder[]
     {
-        return files.filter(v => 
+        
+        return files.filter((v:File | Folder) => 
         {
             if (v.name.includes(searchStr)) return v;
         

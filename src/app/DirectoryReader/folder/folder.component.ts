@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Folder } from 'src/app/Models/Folder';
 import { FileDetector } from 'src/app/Models/FileDetector';
 import { DirectoryReaderService } from '../directory-reader.service';
-import { TreeItem } from 'src/app/Models/TreeItem';
 
 @Component({
   selector: 'folder',
@@ -16,8 +15,8 @@ export class FolderComponent  {
 
     constructor(private router : Router, public directoryReaderService : DirectoryReaderService) { }
 
-    isFolder(item:TreeItem) : boolean { return FileDetector.isFolder(item); }
-    isFile(item:TreeItem) : boolean { return FileDetector.isFile(item); }
+    isFolder(item:File | Folder) : boolean { return FileDetector.isFolder(item); }
+    isFile(item:File | Folder) : boolean { return FileDetector.isFile(item); }
 
     @Input() folder:Folder;
 

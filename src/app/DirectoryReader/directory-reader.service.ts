@@ -7,6 +7,7 @@ import { Folder } from '../Models/Folder';
 import { File } from '../Models/File';
 import { apiFileSystem } from 'src/environments/environment';
 import { TreeItem } from '../Models/TreeItem';
+import { FileTypes } from '../Models/FilesType';
 
 @Injectable({providedIn:"root"})
 export class DirectoryReaderService
@@ -14,30 +15,36 @@ export class DirectoryReaderService
   
     constructor(private http : HttpClient) { }
     
-    getRootDirectoryFiles() : Observable<Folder[] | File[]>
+    getRootDirectoryFiles() : Observable<File[] | Folder[]>
     {
-        return this.http.get(apiFileSystem).pipe(map((items:TreeItem[]) =>  { return this.mapFiles(items, "root"); }));
+        return this.http.get(apiFileSystem).pipe(map((items:TreeItem[]) =>  { return this.mapFiles(items); }));
     }
 
-    private mapFiles(data:TreeItem[], parent:string)
+    private mapFiles(items: TreeItem[]): File[] | Folder[]
     {
-        return data.map(e => 
-            { 
-                if (e.type == "folder") {
+        return items.map((e:TreeItem) => 
+        { 
+            if (e.type == FileTypes.folder) 
+            {
+                
+                let folder = e as Folder;
+                folder = new Folder(folder.name, folder.files);
+                folder.files = this.mapFiles(folder.files);
+                return folder;
+            }
 
-                    e.files = this.mapFiles(e.files, e.name);
-                    return new Folder(e.name, e.files, parent);
-                }
-
-                if (e.type == "file") 
-                    return new File(e.name, parent);
-
-            });
+            if (e.type == FileTypes.file) 
+            {
+                let file = e as File;
+                file = new File(file.name);
+                return file;
+            }
+        });
     }
 
 
-    openFile : TreeItem;
-    openFileChange(item:TreeItem) { this.openFile = item;}
+    openFile : File | Folder;
+    openFileChange(item:File | Folder) { this.openFile = item;}
 
 
 }

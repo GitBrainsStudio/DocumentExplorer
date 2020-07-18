@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { FileDetector } from '../Models/FileDetector';
 import { DirectoryReaderService } from './directory-reader.service';
 import { FilesFilter } from '../Models/FilesFilter';
-import { TreeItem } from '../Models/TreeItem';
+import { File } from '../Models/File';
 
 @Component({
   selector: 'directory-reader',
@@ -49,7 +49,6 @@ export class DirectoryReaderComponent implements OnInit {
   {
     await this.directoryReaderService.getRootDirectoryFiles().pipe(takeUntil(this.destroy)).toPromise().then(data =>
       {
-
         data.forEach(e => 
           {
             this.setUniqRouteInEachItem('/', e);
@@ -60,7 +59,7 @@ export class DirectoryReaderComponent implements OnInit {
     )
   }
 
-  setUniqRouteInEachItem(baseRoute, v:TreeItem) : any
+  setUniqRouteInEachItem(baseRoute, v:File|Folder) : any
   {
     v.routerLink = baseRoute + v.name + '/';
     if (v instanceof Folder)
@@ -83,7 +82,7 @@ export class DirectoryReaderComponent implements OnInit {
     this.openFolder(this.files, 1);
   }
 
-  openFolder(filesArray:TreeItem[], i)
+  openFolder(filesArray:File[] | Folder[], i)
   {
     filesArray.forEach(element =>{ 
     
@@ -91,7 +90,7 @@ export class DirectoryReaderComponent implements OnInit {
        
         if (this.routeArray[i++])
         {
-          if (this.isFolder(element)) 
+          if (element instanceof Folder)
           {
             element.opened = true;
             this.openFolder(element.files, i++);
@@ -118,9 +117,9 @@ export class DirectoryReaderComponent implements OnInit {
   }
 
 
-  isFolder(item:TreeItem) : boolean { return FileDetector.isFolder(item); }
+  isFolder(item:File | Folder) : boolean { return FileDetector.isFolder(item); }
 
-  isFile(item:TreeItem) : boolean { return FileDetector.isFile(item); }
+  isFile(item:File | Folder) : boolean { return FileDetector.isFile(item); }
 
      
   ngOnDestroy() {
@@ -128,7 +127,7 @@ export class DirectoryReaderComponent implements OnInit {
     this.destroy.complete();
   }
 
-  get openFile() :TreeItem
+  get openFile() :File | Folder
   {
     return this.directoryReaderService.openFile;
   }
@@ -141,7 +140,7 @@ export class DirectoryReaderComponent implements OnInit {
 
   searchStr:string = "";
 
-  files : TreeItem[];
+  files : File[] | Folder[];
 
 }
 

@@ -1,14 +1,15 @@
 import { TreeItem } from './TreeItem';
+import { File } from './File';
+import { FileTypes } from './FilesType';
 
 
 export class Folder extends TreeItem
 {
-    constructor(public name: string, public files:TreeItem[], public parent:string)
+    constructor(name: string, public files:File[] | Folder[])
     {
-        super(name, "folder");
+        super(name, FileTypes.folder);
     }
 
     opened:boolean = false;
     routerLink: string;
-    type: string;  
 }

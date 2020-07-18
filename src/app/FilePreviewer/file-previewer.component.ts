@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FileDetector } from '../Models/FileDetector';
-import { TreeItem } from '../Models/TreeItem';
+import { Folder } from '../Models/Folder';
+import { File } from '../Models/File';
 
 @Component({
   selector: 'file-previewer',
@@ -14,7 +15,7 @@ export class FilePreviewerComponent implements OnInit {
 
   }
 
-  @Input() file: TreeItem;
+  @Input() file: File | Folder;
 
   get isFolder() : boolean { return FileDetector.isFolder(this.file); }
   get isFile() : boolean { return FileDetector.isFile(this.file); }
